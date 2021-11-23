@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	flex-flow: column;
+}
+
+@media only screen and (min-width: 992px) {
+	.container {
+		flex-flow: row;
+	}
+}
