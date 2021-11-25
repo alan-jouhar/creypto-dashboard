@@ -1,0 +1,6 @@
+.main {
+	display: flex;
+	flex-flow: column;
+	padding: 80px 40px;
+	position: relative;
+}
