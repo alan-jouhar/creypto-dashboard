@@ -1,5 +1,4 @@
 import styles from "./menu.module.css";
-import { useState } from "react";
 import Header from "../header/header";
 
 interface MenuProps {
