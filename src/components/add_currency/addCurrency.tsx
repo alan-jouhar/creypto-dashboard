@@ -17,7 +17,7 @@ function AddCurrency({
 				className={styles.add_currency}
 				onClick={() => setShowForm(!showForm)}
 			>
-				<p>+Add Currency</p>
+				<p className={styles.add}>+Add Currency</p>
 			</div>
 			<CurrencyForm
 				show={showForm}

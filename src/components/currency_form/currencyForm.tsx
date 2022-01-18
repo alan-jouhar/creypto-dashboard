@@ -1,7 +1,7 @@
 import styles from "./currencyForm.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Currency } from "../currency/currency";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
 interface CurrencyFormProps {
@@ -19,7 +19,7 @@ function CurrencyForm({
 	if (show) {
 		classes.push(styles.show);
 	}
-
+	let formRef = useRef(null);
 	let [currencies, setCurrencies] = useState<Currency[]>([]);
 	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
 	const loadCurrencies = () => {
@@ -41,6 +41,11 @@ function CurrencyForm({
 	useEffect(() => {
 		loadCurrencies();
 	}, []);
+
+	useEffect(() => {
+		let form = formRef.current! as HTMLFormElement;
+		form.reset();
+	}, [show]);
 
 	const searchCurrency = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (currencies.length > 0) {
@@ -77,7 +82,7 @@ function CurrencyForm({
 	return (
 		<div className={classes_str}>
 			<FontAwesomeIcon icon={faTimes} onClick={() => setShowForm(!show)} />
-			<form className={styles.form}>
+			<form className={styles.form} ref={formRef}>
 				<label>
 					Search Currency
 					<input
