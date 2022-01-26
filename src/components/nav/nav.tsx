@@ -52,7 +52,7 @@ function NavBar(props: NavBarProp) {
 					<li className={styles.nav__item}>
 						<a href="#" className={styles.nav__anchor}>
 							<FontAwesomeIcon className={styles.nav__icon} icon={faUserCog} />
-							Account Settings
+							Settings
 						</a>
 					</li>
 				</ul>

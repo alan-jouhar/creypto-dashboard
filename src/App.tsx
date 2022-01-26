@@ -1,15 +1,18 @@
-import React from "react";
 import logo from "./logo.svg";
-import Menu from "./components/menu/menu";
+import Container from "./components/container/container";
+import Main from "./components/main/main";
+import Header from "./components/header/header";
+import Wallet from "./components/wallet/wallet";
 import "./App.css";
 function App() {
 	return (
-		<div className="App">
-			<Menu logo={logo}></Menu>
-			<h1 onMouseEnter={() => console.log("color is white")}>
-				This is just Dummy text
-			</h1>
-		</div>
+		<Container>
+			<Header logo={logo}></Header>
+			<Main>
+				<h1>This is just Dummy text</h1>
+				<Wallet />
+			</Main>
+		</Container>
 	);
 }
 
