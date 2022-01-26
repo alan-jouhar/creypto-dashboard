@@ -2,10 +2,12 @@
 	height: 0;
 	overflow: hidden;
 	transition: height 0.5s;
+	padding: 0 30px;
 }
 
 .nav__visible {
 	height: 100vh;
+	padding: 0 30px;
 }
 .nav__list {
 	list-style-type: none;
@@ -27,11 +29,14 @@
 @media only screen and (min-width: 992px) {
 	.nav {
 		height: auto;
+		padding: 50px;
+		flex: 2;
 	}
 	.nav__item {
 		padding: 30px 0;
 	}
 	.nav__anchor {
 		padding-left: 10px;
+		display: flex;
 	}
 }

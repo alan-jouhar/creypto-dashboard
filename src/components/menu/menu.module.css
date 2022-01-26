@@ -1,24 +1,33 @@
-.menu {
-	background-color: rgba(32, 29, 71, 1);
-	color: #ffffff;
-	position: absolute;
-	width: 100%;
-	z-index: 1;
-	padding: 10px 20px;
+.menu__header {
+	align-items: flex-start;
 }
 
-.active {
-	color: #53b9ea;
+.collapse {
+	width: 50px;
+}
+
+.logo {
+	width: 50px;
+	display: none;
+}
+.display {
+	display: none;
 }
 
 @media only screen and (min-width: 992px) {
-	.menu {
-		height: 100vh;
-		width: 300px;
+	.menu__header {
 		display: flex;
 		flex-flow: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		position: static;
+		height: 100%;
+		padding: 50px 0;
+	}
+	.logo {
+		display: block;
+		order: -1;
+	}
+	.collapse {
+		display: none;
 	}
 }
