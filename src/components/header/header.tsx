@@ -1,37 +1,36 @@
 import styles from "./header.module.css";
+import Menu from "../menu/menu";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faBars,
-	faTimes,
 	faArrowLeft,
+	faCaretSquareLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import NavBar from "../nav/nav";
 
 interface MenuProps {
 	logo: string;
 }
-
-function Header({ logo }: MenuProps) {
-	let [collapsed, setCollapsed] = useState<boolean>(false);
+function Header(props: MenuProps): JSX.Element {
+	const [menuCollapse, setMenuCollapse] = useState(false);
+	let classes = null;
+	if (menuCollapse) {
+		classes = styles.collapse;
+	} else {
+		classes = styles.header;
+	}
 	return (
-		<section className={styles.menu__header}>
-			<div className={styles.collapse}>
-				<FontAwesomeIcon
-					icon={collapsed ? faTimes : faBars}
-					size="2x"
-					onClick={() => setCollapsed(!collapsed)}
-				/>
-			</div>
-
-			<NavBar collapsed={collapsed} />
-
-			{/* this arrow will only be visible on desktop */}
-			<FontAwesomeIcon icon={faArrowLeft} size="2x" className={styles.arrow} />
-
-			<div className={styles.logo}>
-				<img src={logo} alt="App logo" />
-			</div>
+		<section className={classes}>
+			<Menu
+				logo={props.logo}
+				menuCollapse={menuCollapse}
+				setMenuCollapse={setMenuCollapse}
+			/>
+			<FontAwesomeIcon
+				icon={faCaretSquareLeft}
+				size="3x"
+				className={menuCollapse ? styles.rotate : styles.arrow}
+				onClick={() => setMenuCollapse((menuCollapse) => !menuCollapse)}
+			/>
 		</section>
 	);
 }
