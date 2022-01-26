@@ -3,4 +3,5 @@
 	flex-flow: column;
 	padding: 80px 40px;
 	position: relative;
+	flex: 2;
 }
