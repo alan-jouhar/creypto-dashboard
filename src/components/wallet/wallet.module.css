@@ -1,0 +1,14 @@
+.wallet {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+}
+.lastItem {
+	width: 100%;
+}
+@media only screen and (min-width: 992px) {
+	.wallet {
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+}

@@ -41,3 +41,21 @@
 		transform: rotate(360deg);
 	}
 }
+
+@font-face {
+	font-family: "HelveticaNeue";
+	src: local("HelveticaNeue"),
+		url(./fonts/Helvetica\ Neue\ LTW0697BlkCnObl.ttf) format("opentype");
+}
+
+@font-face {
+	font-family: "HelveticaNeue medium";
+	src: local("HelveticaNeue"),
+		url(./fonts/PragmaticaMedium.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "HelveticaNeue bold";
+	font-weight: 700;
+	src: local("HelveticaNeue"), url(./fonts/FreeSansBold.ttf) format("opentype");
+}
