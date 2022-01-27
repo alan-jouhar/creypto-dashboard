@@ -1,0 +1,54 @@
+.currency {
+	display: flex;
+	flex: 1;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 20px 45px;
+	border: solid 1px #312f62;
+	border-radius: 10px;
+	margin: 10px 0;
+}
+.coin_image {
+	width: 25px;
+	display: inline-block;
+	width: 25%;
+	padding-right: 10px;
+}
+.price_up {
+	color: #50e3c2;
+}
+.price_down {
+	color: #e3507a;
+}
+.change_rate {
+	font-family: "HelveticaNeue";
+	font-size: 14px;
+}
+.sy_cr_container {
+	margin-left: auto;
+}
+.price {
+	font-family: "HelveticaNeue medium";
+	font-size: 17px;
+}
+.symbol {
+	font-family: "HelveticaNeue bold";
+	font-size: 12px;
+}
+.graph {
+	padding: 5px;
+}
+@media only screen and (min-width: 992px) {
+	.currency {
+		display: flex;
+		flex: 1 1 200px;
+		max-width: 250px;
+		justify-content: flex-start;
+		flex-flow: row nowrap;
+		align-items: center;
+		padding: 20px 15px;
+		border: solid 1px #312f62;
+		border-radius: 10px;
+		margin: 10px 10px;
+	}
+}

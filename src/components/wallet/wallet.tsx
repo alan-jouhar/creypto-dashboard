@@ -1,6 +1,6 @@
 import styles from "./wallet.module.css";
 import AddCurrency from "../add_currency/addCurrency";
-import CurrencyWidget, { Currency } from "../currency/currency";
+import CurrencyWidget, { Currency } from "../currency_widget/currencyWidget";
 import { useState } from "react";
 
 function Wallet() {
