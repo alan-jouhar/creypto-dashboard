@@ -10,38 +10,20 @@ interface CurrencyFormProps {
 }
 
 function CurrencyForm({
-	showForm: showForm,
+	showForm,
 	setShowForm,
+	currencies,
 	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: CurrencyFormProps & AddCurrencyProps) {
+	let formRef = useRef(null);
+	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
+
 	let classes = [styles.form_wrapper];
 	if (showForm) {
 		classes.push(styles.show);
 	}
-	let formRef = useRef(null);
-	let [currencies, setCurrencies] = useState<Currency[]>([]);
-	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
-
-	const loadCurrencies = () => {
-		console.log("I am executing the effect.");
-		var requestOptions: RequestInit = {
-			method: "GET",
-			redirect: "follow",
-		};
-
-		fetch("https://api.coincap.io/v2/assets", requestOptions)
-			.then((response) => response.json())
-			.then((result) => setCurrencies(result.data))
-			.catch((error) =>
-				setTimeout(() => {
-					loadCurrencies();
-				}, 3000)
-			);
-	};
-	useEffect(() => {
-		loadCurrencies();
-	}, []);
+	let classes_str = classes.join(" ");
 
 	useEffect(() => {
 		let form = formRef.current! as HTMLFormElement;
@@ -51,16 +33,13 @@ function CurrencyForm({
 	const searchCurrency = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (currencies.length > 0) {
 			const value = e.currentTarget.value.toLowerCase();
-			let matchingCurrencies = currencies.filter((currency) => {
-				if (
+			let filteredCurrencies = currencies.filter(
+				(currency) =>
 					currency.id.toLowerCase().includes(value) ||
 					currency.symbol.toLowerCase().includes(value)
-				)
-					return true;
-				else return false;
-			});
+			);
 			if (value !== "") {
-				setMatchedCurrencies(matchingCurrencies);
+				setMatchedCurrencies(filteredCurrencies);
 			} else {
 				setMatchedCurrencies([]);
 			}
@@ -79,7 +58,7 @@ function CurrencyForm({
 			}
 		});
 	};
-	let classes_str = classes.join(" ");
+
 	return (
 		<div className={classes_str}>
 			<FontAwesomeIcon
@@ -96,7 +75,7 @@ function CurrencyForm({
 						type="text"
 						name="currency"
 						id=""
-						placeholder="eg. BTC"
+						placeholder="BTC, ETH or Dogecoin"
 						onChange={searchCurrency}
 					/>
 					<ul
