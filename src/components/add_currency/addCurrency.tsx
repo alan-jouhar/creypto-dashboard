@@ -9,8 +9,8 @@ export interface AddCurrencyProps {
 	>;
 }
 function AddCurrency({
-	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
+	setCurrentSelectedCurrencies,
 }: AddCurrencyProps) {
 	let [showForm, setShowForm] = useState(false);
 	return (
