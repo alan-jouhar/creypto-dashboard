@@ -21,7 +21,9 @@ function AddCurrency({
 			>
 				<p className={styles.add}>+Add Currency</p>
 			</div>
-
+			{/* we send extra props (showForm,setShowForm) to the form 
+				so that it knows when to display its self.
+			*/}
 			<CurrencyForm
 				show={showForm}
 				setShowForm={setShowForm}
