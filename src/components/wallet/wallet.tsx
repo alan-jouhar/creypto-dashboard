@@ -4,9 +4,14 @@ import CurrencyWidget, { Currency } from "../currency_widget/currencyWidget";
 import { useEffect, useState } from "react";
 
 function Wallet() {
+	// Iniitally we load all currencies from the endpoint.
+	let [curencies, setCurencies] = useState<Currency[]>([]);
+
+	// The current Selected currencies in the form
 	let [currentSelectedCurrencies, setCurrenSelectedCurrencies] = useState<
 		Currency[]
 	>([]);
+
 	const loadCurrencies = () => {
 		console.log("I am executing the effect.");
 		var requestOptions: RequestInit = {
@@ -23,9 +28,11 @@ function Wallet() {
 				}, 3000)
 			);
 	};
+
 	useEffect(() => {
 		loadCurrencies();
 	}, []);
+
 	return (
 		<div className={styles.wallet}>
 			{currentSelectedCurrencies.map((curr) => {
