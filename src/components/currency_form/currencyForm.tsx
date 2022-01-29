@@ -4,64 +4,42 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Currency } from "../currency_widget/currencyWidget";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
-import { createPortal } from "react-dom";
 interface CurrencyFormProps {
-	show: boolean;
+	showForm: boolean;
 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CurrencyForm({
-	show,
+	showForm,
 	setShowForm,
-	setCurrenSelectedCurrencies,
+	currencies,
+	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: CurrencyFormProps & AddCurrencyProps) {
-	let classes = [styles.form_wrapper];
-	if (show) {
-		classes.push(styles.show);
-	}
-	let formRef = useRef(null);
-	let [currencies, setCurrencies] = useState<Currency[]>([]);
+	let [inputValue, setInputValue] = useState<string>(" ");
 	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
 
-	const loadCurrencies = () => {
-		console.log("I am executing the effect.");
-		var requestOptions: RequestInit = {
-			method: "GET",
-			redirect: "follow",
-		};
-
-		fetch("https://api.coincap.io/v2/assets", requestOptions)
-			.then((response) => response.json())
-			.then((result) => setCurrencies(result.data))
-			.catch((error) =>
-				setTimeout(() => {
-					loadCurrencies();
-				}, 3000)
-			);
-	};
-	useEffect(() => {
-		loadCurrencies();
-	}, []);
+	let classes = [styles.form_wrapper];
+	if (showForm) {
+		classes.push(styles.show);
+	}
+	let classes_str = classes.join(" ");
 
 	useEffect(() => {
-		let form = formRef.current! as HTMLFormElement;
-		form.reset();
-	}, [show]);
+		setInputValue("");
+	}, [showForm]);
 
 	const searchCurrency = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
 		if (currencies.length > 0) {
-			const value = e.currentTarget.value.toLowerCase();
-			let matchingCurrencies = currencies.filter((currency) => {
-				if (
+			const value = inputValue.toLowerCase();
+			let filteredCurrencies = currencies.filter(
+				(currency) =>
 					currency.id.toLowerCase().includes(value) ||
 					currency.symbol.toLowerCase().includes(value)
-				)
-					return true;
-				else return false;
-			});
+			);
 			if (value !== "") {
-				setMatchedCurrencies(matchingCurrencies);
+				setMatchedCurrencies(filteredCurrencies);
 			} else {
 				setMatchedCurrencies([]);
 			}
@@ -70,7 +48,7 @@ function CurrencyForm({
 
 	const selectCurrency = (currency: Currency, e: React.MouseEvent) => {
 		let target = e.target as HTMLElement;
-		setCurrenSelectedCurrencies((prevState) => {
+		setCurrentSelectedCurrencies((prevState) => {
 			if (!prevState.includes(currency)) {
 				target.classList.replace(styles.currency_list_item, styles.selected);
 				return prevState.concat(currency);
@@ -80,16 +58,16 @@ function CurrencyForm({
 			}
 		});
 	};
-	let classes_str = classes.join(" ");
+
 	return (
 		<div className={classes_str}>
 			<FontAwesomeIcon
 				icon={faTimes}
 				color="white"
 				size="2x"
-				onClick={() => setShowForm(!show)}
+				onClick={() => setShowForm(!showForm)}
 			/>
-			<form className={styles.form} ref={formRef}>
+			<form className={styles.form}>
 				<label>
 					Search Currency
 					<input
@@ -97,7 +75,8 @@ function CurrencyForm({
 						type="text"
 						name="currency"
 						id=""
-						placeholder="eg. BTC"
+						placeholder="BTC, ETH or Dogecoin"
+						value={inputValue}
 						onChange={searchCurrency}
 					/>
 					<ul
@@ -106,22 +85,19 @@ function CurrencyForm({
 							matchedCurrencies.length > 0 ? styles.currency_list_visible : "",
 						].join(" ")}
 					>
-						{matchedCurrencies.map((currency) => {
-							let option = (
-								<li
-									key={currency.id}
-									className={
-										currentSelectedCurrencies.includes(currency)
-											? styles.selected
-											: styles.currency_list_item
-									}
-									onClick={(e: React.MouseEvent) => selectCurrency(currency, e)}
-								>
-									{currency.name.toUpperCase()}
-								</li>
-							);
-							return option;
-						})}
+						{matchedCurrencies.map((currency) => (
+							<li
+								key={currency.id}
+								className={
+									currentSelectedCurrencies.includes(currency)
+										? styles.selected
+										: styles.currency_list_item
+								}
+								onClick={(e: React.MouseEvent) => selectCurrency(currency, e)}
+							>
+								{currency.name.toUpperCase()}
+							</li>
+						))}
 					</ul>
 				</label>
 			</form>
