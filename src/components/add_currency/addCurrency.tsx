@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./addCurrency.module.css";
 import CurrencyForm from "../currency_form/currencyForm";
 import { Currency } from "../currency_widget/currencyWidget";
-import { createPortal } from "react-dom";
 export interface AddCurrencyProps {
 	currentSelectedCurrencies: Currency[];
 	setCurrentSelectedCurrencies: React.Dispatch<
