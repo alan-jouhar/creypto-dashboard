@@ -5,12 +5,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Currency } from "../currency_widget/currencyWidget";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
 interface CurrencyFormProps {
-	show: boolean;
+	showForm: boolean;
 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CurrencyForm({
-	show: showForm,
+	showForm: showForm,
 	setShowForm,
 	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,

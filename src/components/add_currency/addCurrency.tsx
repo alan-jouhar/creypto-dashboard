@@ -3,12 +3,14 @@ import styles from "./addCurrency.module.css";
 import CurrencyForm from "../currency_form/currencyForm";
 import { Currency } from "../currency_widget/currencyWidget";
 export interface AddCurrencyProps {
+	currencies: Currency[];
 	currentSelectedCurrencies: Currency[];
 	setCurrentSelectedCurrencies: React.Dispatch<
 		React.SetStateAction<Currency[]>
 	>;
 }
 function AddCurrency({
+	currencies,
 	currentSelectedCurrencies,
 	setCurrentSelectedCurrencies,
 }: AddCurrencyProps) {
@@ -25,8 +27,9 @@ function AddCurrency({
 				so that it knows when to display its self.
 			*/}
 			<CurrencyForm
-				show={showForm}
+				showForm={showForm}
 				setShowForm={setShowForm}
+				currencies={currencies}
 				currentSelectedCurrencies={currentSelectedCurrencies}
 				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			></CurrencyForm>

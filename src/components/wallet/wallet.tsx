@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function Wallet() {
 	// Iniitally we load all currencies from the endpoint.
-	let [curencies, setCurencies] = useState<Currency[]>([]);
+	let [currencies, setCurencies] = useState<Currency[]>([]);
 
 	// The current Selected currencies in the form
 	let [currentSelectedCurrencies, setCurrentSelectedCurrencies] = useState<
@@ -30,10 +30,11 @@ function Wallet() {
 
 	return (
 		<div className={styles.wallet}>
-			{curencies.map((curr) => {
+			{currentSelectedCurrencies.map((curr) => {
 				return <CurrencyWidget key={curr.id} currency={curr} />;
 			})}
 			<AddCurrency
+				currencies={currencies}
 				currentSelectedCurrencies={currentSelectedCurrencies}
 				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			/>
