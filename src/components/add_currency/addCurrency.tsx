@@ -2,17 +2,19 @@ import { useState } from "react";
 import styles from "./addCurrency.module.css";
 import CurrencyForm from "../currency_form/currencyForm";
 import { Currency } from "../currency_widget/currencyWidget";
-import { createPortal } from "react-dom";
 export interface AddCurrencyProps {
+	currencies: Currency[];
 	currentSelectedCurrencies: Currency[];
-	setCurrenSelectedCurrencies: React.Dispatch<React.SetStateAction<Currency[]>>;
+	setCurrentSelectedCurrencies: React.Dispatch<
+		React.SetStateAction<Currency[]>
+	>;
 }
 function AddCurrency({
-	setCurrenSelectedCurrencies,
+	currencies,
 	currentSelectedCurrencies,
+	setCurrentSelectedCurrencies,
 }: AddCurrencyProps) {
 	let [showForm, setShowForm] = useState(false);
-	let main = document.getElementById("main");
 	return (
 		<>
 			<div
@@ -21,12 +23,15 @@ function AddCurrency({
 			>
 				<p className={styles.add}>+Add Currency</p>
 			</div>
-
+			{/* we send extra props (showForm,setShowForm) to the form 
+				so that it knows when to display its self.
+			*/}
 			<CurrencyForm
-				show={showForm}
+				showForm={showForm}
 				setShowForm={setShowForm}
+				currencies={currencies}
 				currentSelectedCurrencies={currentSelectedCurrencies}
-				setCurrenSelectedCurrencies={setCurrenSelectedCurrencies}
+				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			></CurrencyForm>
 		</>
 	);

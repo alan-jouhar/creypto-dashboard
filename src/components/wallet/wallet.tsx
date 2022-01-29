@@ -1,12 +1,32 @@
 import styles from "./wallet.module.css";
 import AddCurrency from "../add_currency/addCurrency";
 import CurrencyWidget, { Currency } from "../currency_widget/currencyWidget";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Wallet() {
-	let [currentSelectedCurrencies, setCurrenSelectedCurrencies] = useState<
+	// Iniitally we load all currencies from the endpoint.
+	let [currencies, setCurencies] = useState<Currency[]>([]);
+
+	// The current Selected currencies in the form
+	let [currentSelectedCurrencies, setCurrentSelectedCurrencies] = useState<
 		Currency[]
 	>([]);
+
+	const loadCurrencies = () => {
+		var requestOptions: RequestInit = {
+			method: "GET",
+			redirect: "follow",
+		};
+
+		fetch("https://api.coincap.io/v2/assets", requestOptions)
+			.then((response) => response.json())
+			.then((result) => setCurencies(result.data))
+			.catch((error) => console.log(error));
+	};
+
+	useEffect(() => {
+		loadCurrencies();
+	}, []);
 
 	return (
 		<div className={styles.wallet}>
@@ -14,8 +34,9 @@ function Wallet() {
 				return <CurrencyWidget key={curr.id} currency={curr} />;
 			})}
 			<AddCurrency
+				currencies={currencies}
 				currentSelectedCurrencies={currentSelectedCurrencies}
-				setCurrenSelectedCurrencies={setCurrenSelectedCurrencies}
+				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			/>
 		</div>
 	);
