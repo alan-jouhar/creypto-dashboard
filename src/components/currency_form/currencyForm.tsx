@@ -10,13 +10,13 @@ interface CurrencyFormProps {
 }
 
 function CurrencyForm({
-	show,
+	show: showForm,
 	setShowForm,
 	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: CurrencyFormProps & AddCurrencyProps) {
 	let classes = [styles.form_wrapper];
-	if (show) {
+	if (showForm) {
 		classes.push(styles.show);
 	}
 	let formRef = useRef(null);
@@ -46,7 +46,7 @@ function CurrencyForm({
 	useEffect(() => {
 		let form = formRef.current! as HTMLFormElement;
 		form.reset();
-	}, [show]);
+	}, [showForm]);
 
 	const searchCurrency = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (currencies.length > 0) {
@@ -86,7 +86,7 @@ function CurrencyForm({
 				icon={faTimes}
 				color="white"
 				size="2x"
-				onClick={() => setShowForm(!show)}
+				onClick={() => setShowForm(!showForm)}
 			/>
 			<form className={styles.form} ref={formRef}>
 				<label>
