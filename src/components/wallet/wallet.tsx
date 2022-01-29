@@ -13,7 +13,6 @@ function Wallet() {
 	>([]);
 
 	const loadCurrencies = () => {
-		console.log("I am executing the effect.");
 		var requestOptions: RequestInit = {
 			method: "GET",
 			redirect: "follow",
