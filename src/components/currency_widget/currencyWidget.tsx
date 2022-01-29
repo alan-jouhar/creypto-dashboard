@@ -39,22 +39,12 @@ function CurrencyWidget({ currency }: CurrencyWidgetProps) {
 				<p>{formatedCoinPrice}$</p>
 				{currency.changePercent24Hr.startsWith("-") ? (
 					<>
-						<img
-							width="40px"
-							src={graphDown}
-							alt="price is down"
-							className={styles.graph}
-						/>
+						<img src={graphDown} alt="price is down" className={styles.graph} />
 						<img width="10px" src={arrowDown} />
 					</>
 				) : (
 					<>
-						<img
-							width="40px"
-							src={graphUp}
-							alt="price is up"
-							className={styles.graph}
-						/>
+						<img src={graphUp} alt="price is up" className={styles.graph} />
 						<img width="10px" src={arrowUp} />
 					</>
 				)}

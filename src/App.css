@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	color: white;
 }
 .App {
 	text-align: center;
@@ -43,9 +44,8 @@
 }
 
 @font-face {
-	font-family: "HelveticaNeue";
-	src: local("HelveticaNeue"),
-		url(./fonts/Helvetica\ Neue\ LTW0697BlkCnObl.ttf) format("opentype");
+	font-family: "FreeSans";
+	src: local("FreeSans"), url(./fonts/FreeSans.otf) format("opentype");
 }
 
 @font-face {
