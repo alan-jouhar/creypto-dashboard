@@ -2,7 +2,7 @@ import styles from "./currencyForm.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
-import { Currency } from "../currency/currency";
+import { Currency } from "../currency_widget/currencyWidget";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
 interface CurrencyFormProps {
 	show: boolean;

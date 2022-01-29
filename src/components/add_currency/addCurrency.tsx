@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./addCurrency.module.css";
 import CurrencyForm from "../currency_form/currencyForm";
-import { Currency } from "../currency/currency";
+import { Currency } from "../currency_widget/currencyWidget";
 export interface AddCurrencyProps {
 	currentSelectedCurrencies: Currency[];
 	setCurrenSelectedCurrencies: React.Dispatch<React.SetStateAction<Currency[]>>;
