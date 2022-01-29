@@ -22,11 +22,7 @@ function Wallet() {
 		fetch("https://api.coincap.io/v2/assets", requestOptions)
 			.then((response) => response.json())
 			.then((result) => setCurrenSelectedCurrencies(result.data))
-			.catch((error) =>
-				setTimeout(() => {
-					loadCurrencies();
-				}, 3000)
-			);
+			.catch((error) => console.log(error));
 	};
 
 	useEffect(() => {
