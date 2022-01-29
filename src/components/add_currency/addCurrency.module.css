@@ -2,9 +2,18 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 25px 0 7px;
 	padding: 20px;
 	border: 1px dashed #312f62;
 	border-radius: 5px;
+	padding: 20px 45px;
+	margin: 10px 0;
 	cursor: pointer;
+	height: 89px;
+}
+
+@media only screen and (min-width: 992px) {
+	.add_currency {
+		margin: 10px 10px;
+		width: 250px;
+	}
 }

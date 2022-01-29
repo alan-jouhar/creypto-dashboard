@@ -4,6 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Currency } from "../currency_widget/currencyWidget";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
+import { createPortal } from "react-dom";
 interface CurrencyFormProps {
 	show: boolean;
 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ function CurrencyForm({
 	let formRef = useRef(null);
 	let [currencies, setCurrencies] = useState<Currency[]>([]);
 	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
+
 	const loadCurrencies = () => {
 		console.log("I am executing the effect.");
 		var requestOptions: RequestInit = {
@@ -81,7 +83,12 @@ function CurrencyForm({
 	let classes_str = classes.join(" ");
 	return (
 		<div className={classes_str}>
-			<FontAwesomeIcon icon={faTimes} onClick={() => setShowForm(!show)} />
+			<FontAwesomeIcon
+				icon={faTimes}
+				color="white"
+				size="2x"
+				onClick={() => setShowForm(!show)}
+			/>
 			<form className={styles.form} ref={formRef}>
 				<label>
 					Search Currency
