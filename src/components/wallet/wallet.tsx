@@ -20,7 +20,7 @@ function Wallet() {
 
 		fetch("https://api.coincap.io/v2/assets", requestOptions)
 			.then((response) => response.json())
-			.then((result) => setCurrenSelectedCurrencies(result.data))
+			.then((result) => setCurencies(result.data))
 			.catch((error) => console.log(error));
 	};
 
@@ -30,7 +30,7 @@ function Wallet() {
 
 	return (
 		<div className={styles.wallet}>
-			{currentSelectedCurrencies.map((curr) => {
+			{curencies.map((curr) => {
 				return <CurrencyWidget key={curr.id} currency={curr} />;
 			})}
 			<AddCurrency
