@@ -8,7 +8,7 @@ function Wallet() {
 	let [curencies, setCurencies] = useState<Currency[]>([]);
 
 	// The current Selected currencies in the form
-	let [currentSelectedCurrencies, setCurrenSelectedCurrencies] = useState<
+	let [currentSelectedCurrencies, setCurrentSelectedCurrencies] = useState<
 		Currency[]
 	>([]);
 
@@ -35,7 +35,7 @@ function Wallet() {
 			})}
 			<AddCurrency
 				currentSelectedCurrencies={currentSelectedCurrencies}
-				setCurrenSelectedCurrencies={setCurrenSelectedCurrencies}
+				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			/>
 		</div>
 	);

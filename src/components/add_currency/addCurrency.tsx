@@ -5,10 +5,12 @@ import { Currency } from "../currency_widget/currencyWidget";
 import { createPortal } from "react-dom";
 export interface AddCurrencyProps {
 	currentSelectedCurrencies: Currency[];
-	setCurrenSelectedCurrencies: React.Dispatch<React.SetStateAction<Currency[]>>;
+	setCurrentSelectedCurrencies: React.Dispatch<
+		React.SetStateAction<Currency[]>
+	>;
 }
 function AddCurrency({
-	setCurrenSelectedCurrencies,
+	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: AddCurrencyProps) {
 	let [showForm, setShowForm] = useState(false);
@@ -25,7 +27,7 @@ function AddCurrency({
 				show={showForm}
 				setShowForm={setShowForm}
 				currentSelectedCurrencies={currentSelectedCurrencies}
-				setCurrenSelectedCurrencies={setCurrenSelectedCurrencies}
+				setCurrentSelectedCurrencies={setCurrentSelectedCurrencies}
 			></CurrencyForm>
 		</>
 	);

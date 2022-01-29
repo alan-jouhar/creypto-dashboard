@@ -12,7 +12,7 @@ interface CurrencyFormProps {
 function CurrencyForm({
 	show,
 	setShowForm,
-	setCurrenSelectedCurrencies,
+	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: CurrencyFormProps & AddCurrencyProps) {
 	let classes = [styles.form_wrapper];
@@ -69,7 +69,7 @@ function CurrencyForm({
 
 	const selectCurrency = (currency: Currency, e: React.MouseEvent) => {
 		let target = e.target as HTMLElement;
-		setCurrenSelectedCurrencies((prevState) => {
+		setCurrentSelectedCurrencies((prevState) => {
 			if (!prevState.includes(currency)) {
 				target.classList.replace(styles.currency_list_item, styles.selected);
 				return prevState.concat(currency);
