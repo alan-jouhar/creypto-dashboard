@@ -21,7 +21,7 @@
 	color: #e3507a;
 }
 .change_rate {
-	font-family: "HelveticaNeue";
+	font-family: "FreeSans";
 	font-size: 14px;
 }
 .sy_cr_container {
@@ -37,11 +37,12 @@
 }
 .graph {
 	padding: 5px;
+	width: 40px;
 }
 @media only screen and (min-width: 992px) {
 	.currency {
 		display: flex;
-		flex: 1 1 200px;
+		flex: 1 1 250px;
 		max-width: 250px;
 		justify-content: flex-start;
 		flex-flow: row nowrap;
