@@ -16,7 +16,7 @@ function CurrencyForm({
 	setCurrentSelectedCurrencies,
 	currentSelectedCurrencies,
 }: CurrencyFormProps & AddCurrencyProps) {
-	let formRef = useRef(null);
+	let [inputValue, setInputValue] = useState<string>(" ");
 	let [matchedCurrencies, setMatchedCurrencies] = useState<Currency[]>([]);
 
 	let classes = [styles.form_wrapper];
@@ -26,13 +26,13 @@ function CurrencyForm({
 	let classes_str = classes.join(" ");
 
 	useEffect(() => {
-		let form = formRef.current! as HTMLFormElement;
-		form.reset();
+		setInputValue("");
 	}, [showForm]);
 
 	const searchCurrency = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
 		if (currencies.length > 0) {
-			const value = e.currentTarget.value.toLowerCase();
+			const value = inputValue.toLowerCase();
 			let filteredCurrencies = currencies.filter(
 				(currency) =>
 					currency.id.toLowerCase().includes(value) ||
@@ -67,7 +67,7 @@ function CurrencyForm({
 				size="2x"
 				onClick={() => setShowForm(!showForm)}
 			/>
-			<form className={styles.form} ref={formRef}>
+			<form className={styles.form}>
 				<label>
 					Search Currency
 					<input
@@ -76,6 +76,7 @@ function CurrencyForm({
 						name="currency"
 						id=""
 						placeholder="BTC, ETH or Dogecoin"
+						value={inputValue}
 						onChange={searchCurrency}
 					/>
 					<ul
@@ -84,22 +85,19 @@ function CurrencyForm({
 							matchedCurrencies.length > 0 ? styles.currency_list_visible : "",
 						].join(" ")}
 					>
-						{matchedCurrencies.map((currency) => {
-							let option = (
-								<li
-									key={currency.id}
-									className={
-										currentSelectedCurrencies.includes(currency)
-											? styles.selected
-											: styles.currency_list_item
-									}
-									onClick={(e: React.MouseEvent) => selectCurrency(currency, e)}
-								>
-									{currency.name.toUpperCase()}
-								</li>
-							);
-							return option;
-						})}
+						{matchedCurrencies.map((currency) => (
+							<li
+								key={currency.id}
+								className={
+									currentSelectedCurrencies.includes(currency)
+										? styles.selected
+										: styles.currency_list_item
+								}
+								onClick={(e: React.MouseEvent) => selectCurrency(currency, e)}
+							>
+								{currency.name.toUpperCase()}
+							</li>
+						))}
 					</ul>
 				</label>
 			</form>
