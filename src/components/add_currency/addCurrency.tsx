@@ -12,7 +12,6 @@ function AddCurrency({
 	currentSelectedCurrencies,
 }: AddCurrencyProps) {
 	let [showForm, setShowForm] = useState(false);
-	let main = document.getElementById("main");
 	return (
 		<>
 			<div
