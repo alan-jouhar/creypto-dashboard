@@ -4,7 +4,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Currency } from "../currency_widget/currencyWidget";
 import { AddCurrencyProps } from "../add_currency/addCurrency";
-import { createPortal } from "react-dom";
 interface CurrencyFormProps {
 	show: boolean;
 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
